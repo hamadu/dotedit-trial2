@@ -1,37 +1,47 @@
 import * as React from "react";
-import { GlobalState } from "../models/GlobalState";
-import { DispatchActions } from "../models/DispatchActions";
+import { CanvasState, ToolState } from "../states";
 
 import { TouchScreen } from "./TouchScreen"
 import { DotCanvas } from "./DotCanvas"
+import { ToolBar } from "./ToolBar"
 
 interface Props {
-  value: GlobalState;
-  actions: DispatchActions;
+  canvas: CanvasState;
+  tool: ToolState;
+  actions: any;
 }
 
 export class DotApp extends React.Component<Props, {}> {
   constructor(props: Object) {
     super(props);
 
-    this.touchDot = this.touchDot.bind(this);
+    this.touchCanvas = this.touchCanvas.bind(this);
+    this.changeTool = this.changeTool.bind(this);
   }
 
-  touchDot(y: number, x: number, mode: string) {
-    this.props.actions.touch(y, x, mode);
+  touchCanvas(y: number, x: number, mode: string) {
+    this.props.actions.touchCanvas(y, x, mode);
+  }
+
+  changeTool(toId: number) {
+    this.props.actions.changeTool(toId);
   }
 
   render() {
-    const height = this.props.value.dots.length * 16;
-    const width = this.props.value.dots[0].length * 16;
+    const height = this.props.canvas.dots.length * 16;
+    const width = this.props.canvas.dots[0].length * 16;
 
     return (
       <div>
         <h1>Hello</h1>
 
+        <div>
+          <ToolBar currentTool={0} onChangeTool={this.changeTool} />
+        </div>
+
         <div style={{ position: 'relative' }}>
           <div style={{ position: 'absolute', top: 0, left: 0  }}>
-            <DotCanvas dots={this.props.value.dots} />
+            <DotCanvas dots={this.props.canvas.dots} />
           </div>
           <div style={{
             position: 'absolute',
@@ -42,12 +52,8 @@ export class DotApp extends React.Component<Props, {}> {
             width: width,
             height: height
           }}>
-            <TouchScreen onTouchDot={this.touchDot} />
+            <TouchScreen onTouchDot={this.touchCanvas} />
           </div>
-        </div>
-
-        <div>
-          <button onClick={() => this.props.actions.touch(0, 0, 'down')}>push</button>
         </div>
       </div>
     );

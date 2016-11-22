@@ -1,11 +1,20 @@
 export interface GlobalState {
+  canvas: CanvasState;
+  tool: ToolState;
+}
+
+export interface CanvasState {
   dots: number[][];
   mouse: boolean;
   lastY: number;
   lastX: number;
 }
 
-export function buildInitialState(x: number, y: number): GlobalState {
+export interface ToolState {
+  type: number;
+}
+
+export function buildInitialCanvasState(x: number, y: number): CanvasState {
   let dots: number[][] = [];
 
   for (var i = 0 ; i < y ; i++) {
@@ -22,4 +31,8 @@ export function buildInitialState(x: number, y: number): GlobalState {
     lastY: 0,
     lastX: 0
   };
+}
+
+export function buildInitialToolState(): ToolState {
+  return { type: 0 }
 }

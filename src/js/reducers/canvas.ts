@@ -1,24 +1,19 @@
-import { GlobalState, buildInitialState } from "../models/GlobalState";
-import { DotAction } from "./Action";
+import { CanvasState, buildInitialCanvasState } from "../states";
+import { CanvasAction } from "../actions/canvas";
 
-const initialState: GlobalState = buildInitialState(16, 16);
+const INITIAL_STATE = buildInitialCanvasState(16, 16);
 
-export function reduce(state: GlobalState = initialState, action: DotAction): GlobalState {
+function canvasReducer(state = INITIAL_STATE, action: CanvasAction) {
   switch (action.type) {
-    case "down":
-      return down(state, action);
-    case "up":
-      return up(state, action);
-    case "move":
-      return move(state, action);
-    case "leave":
-      return leave(state, action);
-    default:
-      return state
+    case "down":  return down(state, action);
+    case "up":    return up(state, action);
+    case "move":  return move(state, action);
+    case "leave": return leave(state, action);
+    default:      return state
   }
 }
 
-function down(state: GlobalState, action: DotAction): GlobalState {
+function down(state: CanvasState, action: CanvasAction) {
   return {
     lastY: action.y,
     lastX: action.x,
@@ -27,7 +22,7 @@ function down(state: GlobalState, action: DotAction): GlobalState {
   };
 }
 
-function up(state: GlobalState, action: DotAction): GlobalState {
+function up(state: CanvasState, action: CanvasAction): CanvasState {
   return {
     lastY: action.y,
     lastX: action.x,
@@ -36,7 +31,7 @@ function up(state: GlobalState, action: DotAction): GlobalState {
   };
 }
 
-function leave(state: GlobalState, action: DotAction): GlobalState {
+function leave(state: CanvasState, action: CanvasAction): CanvasState {
   return {
     lastY: action.y,
     lastX: action.x,
@@ -45,7 +40,7 @@ function leave(state: GlobalState, action: DotAction): GlobalState {
   };
 }
 
-function move(state: GlobalState, action: DotAction): GlobalState {
+function move(state: CanvasState, action: CanvasAction): CanvasState {
   if (!state.mouse) {
     return state;
   }
@@ -110,3 +105,5 @@ function changeDot(dots: number[][], y: number, x: number, color: number) {
     ...dots.slice(y+1, dots.length)
   ];
 }
+
+export default canvasReducer;

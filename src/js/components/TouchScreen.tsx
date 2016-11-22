@@ -1,6 +1,4 @@
 import * as React from "react";
-import { GlobalState } from "../models/GlobalState";
-import { DispatchActions } from "../models/DispatchActions";
 import { DotCanvas } from "./DotCanvas"
 
 interface Props {
