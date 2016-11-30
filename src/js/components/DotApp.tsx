@@ -36,7 +36,7 @@ export class DotApp extends React.Component<Props, {}> {
         <h1>Hello</h1>
 
         <div>
-          <ToolBar currentTool={0} onChangeTool={this.changeTool} />
+          <ToolBar currentTool={this.props.tool.type} onChangeTool={this.changeTool} />
         </div>
 
         <div style={{ position: 'relative' }}>
