@@ -1,13 +1,15 @@
 import * as React from "react";
-import { CanvasState, ToolState } from "../states";
+import { CanvasState, ToolState, ColorState } from "../states";
 
 import { TouchScreen } from "./TouchScreen"
 import { DotCanvas } from "./DotCanvas"
 import { ToolBar } from "./ToolBar"
+import { ColorPalette } from "./ColorPalette"
 
 interface Props {
   canvas: CanvasState;
   tool: ToolState;
+  color: ColorState;
   actions: any;
 }
 
@@ -17,6 +19,7 @@ export class DotApp extends React.Component<Props, {}> {
 
     this.touchCanvas = this.touchCanvas.bind(this);
     this.changeTool = this.changeTool.bind(this);
+    this.changeColor = this.changeColor.bind(this);
   }
 
   touchCanvas(y: number, x: number, mode: string) {
@@ -27,6 +30,10 @@ export class DotApp extends React.Component<Props, {}> {
     this.props.actions.changeTool(toId);
   }
 
+  changeColor(toId: number) {
+    console.log(toId);
+  }
+
   render() {
     const height = this.props.canvas.dots.length * 16;
     const width = this.props.canvas.dots[0].length * 16;
@@ -34,6 +41,12 @@ export class DotApp extends React.Component<Props, {}> {
     return (
       <div>
         <h1>Hello</h1>
+
+        <div>
+          <ColorPalette currentColor={this.props.color.selectedColor}
+                        colorMap={this.props.color.colorMap}
+                        onChangeColor={this.changeColor} />
+        </div>
 
         <div>
           <ToolBar currentTool={this.props.tool.type} onChangeTool={this.changeTool} />

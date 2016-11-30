@@ -19,7 +19,8 @@ const store = createStore(reducer, {}, enhancer);
 const mapStateToProps = (state: GlobalState) => {
   return {
     canvas: state.canvas,
-    tool: state.tool
+    tool: state.tool,
+    color: state.color
   }
 }
 

@@ -1,6 +1,7 @@
 export interface GlobalState {
   canvas: CanvasState;
   tool: ToolState;
+  color: ColorState;
 }
 
 export interface CanvasState {
@@ -13,6 +14,11 @@ export interface CanvasState {
 
 export interface ToolState {
   type: number;
+}
+
+export interface ColorState {
+  selectedColor: number;
+  colorMap: string[];
 }
 
 export function buildInitialCanvasState(x: number, y: number): CanvasState {
@@ -37,4 +43,11 @@ export function buildInitialCanvasState(x: number, y: number): CanvasState {
 
 export function buildInitialToolState(): ToolState {
   return { type: 0 }
+}
+
+export function buildInitialColorState(): ColorState {
+  return {
+    selectedColor: 0,
+    colorMap: ['#000', '#f00', '#0f0', '#00f']
+  }
 }
