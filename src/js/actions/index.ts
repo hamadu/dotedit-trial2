@@ -9,11 +9,11 @@ class DispatchActions {
   }
 
   public touchCanvas(y: number, x: number, mode: string) {
-    this.dispatch({ type: mode, y: y, x: x, color: 1 });
+    this.dispatch(touchCanvas(mode, y, x));
   }
 
   public changeTool(toolID: number) {
-    this.dispatch({ type: 'CHANGE_TOOL', toolID: toolID })
+    this.dispatch(changeTool(toolID))
   }
 }
 
