@@ -5,6 +5,7 @@ export interface GlobalState {
 
 export interface CanvasState {
   dots: number[][];
+  previewDots: number[][];
   mouse: boolean;
   lastY: number;
   lastX: number;
@@ -27,6 +28,7 @@ export function buildInitialCanvasState(x: number, y: number): CanvasState {
 
   return {
     dots: dots,
+    previewDots: dots,
     mouse: false,
     lastY: 0,
     lastX: 0

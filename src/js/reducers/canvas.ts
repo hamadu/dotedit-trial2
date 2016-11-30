@@ -13,12 +13,13 @@ function canvasReducer(state = INITIAL_STATE, action: CanvasAction) {
   }
 }
 
-function down(state: CanvasState, action: CanvasAction) {
+function down(state: CanvasState, action: CanvasAction): CanvasState {
   return {
     lastY: action.y,
     lastX: action.x,
     mouse: true,
-    dots: changeDot(state.dots, action.y, action.x, action.color)
+    dots: changeDot(state.dots, action.y, action.x, action.color),
+    previewDots: INITIAL_STATE.previewDots
   };
 }
 
@@ -27,7 +28,8 @@ function up(state: CanvasState, action: CanvasAction): CanvasState {
     lastY: action.y,
     lastX: action.x,
     mouse: false,
-    dots: state.dots
+    dots: state.dots,
+    previewDots: INITIAL_STATE.previewDots
   };
 }
 
@@ -36,7 +38,8 @@ function leave(state: CanvasState, action: CanvasAction): CanvasState {
     lastY: action.y,
     lastX: action.x,
     mouse: false,
-    dots: state.dots
+    dots: state.dots,
+    previewDots: INITIAL_STATE.previewDots
   };
 }
 
@@ -55,7 +58,8 @@ function move(state: CanvasState, action: CanvasAction): CanvasState {
     lastY: action.y,
     lastX: action.x,
     mouse: state.mouse,
-    dots: newDots
+    dots: newDots,
+    previewDots: newDots
   };
 }
 

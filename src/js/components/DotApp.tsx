@@ -39,6 +39,10 @@ export class DotApp extends React.Component<Props, {}> {
           <ToolBar currentTool={this.props.tool.type} onChangeTool={this.changeTool} />
         </div>
 
+        <div style={{ opacity: 0.5 }}>
+          <DotCanvas dots={this.props.canvas.previewDots} />
+        </div>
+
         <div style={{ position: 'relative' }}>
           <div style={{ position: 'absolute', top: 0, left: 0  }}>
             <DotCanvas dots={this.props.canvas.dots} />
