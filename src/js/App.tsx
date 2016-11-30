@@ -1,7 +1,8 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { Provider, connect } from "react-redux";
-import { Dispatch, createStore, combineReducers } from "redux";
+import { Dispatch, createStore, combineReducers, compose } from "redux";
+import DevTools from './containers/DevTools'
 
 import { GlobalState } from './states'
 import reducer from './reducers'
@@ -9,7 +10,11 @@ import DispatchActions from "./actions"
 // import { changeTool } from "./actions/tool"
 import { DotApp } from "./components/DotApp"
 
-const store = createStore(reducer)
+const enhancer = compose(
+  DevTools.instrument()
+);
+
+const store = createStore(reducer, {}, enhancer);
 
 const mapStateToProps = (state: GlobalState) => {
   return {
@@ -31,7 +36,10 @@ const DotAppComponent = connect(
 
 ReactDOM.render(
   <Provider store={store} >
-    <DotAppComponent />
+    <div>
+      <DotAppComponent />
+      <DevTools />
+    </div>
   </Provider>,
   document.getElementById("app")
 );
