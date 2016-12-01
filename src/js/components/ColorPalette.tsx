@@ -9,15 +9,19 @@ interface Props {
 export class ColorPalette extends React.Component<Props, {}> {
   render() {
     const normalStyle = {
-      border: '1px solid #000'
+      border: '1px solid #000',
+      width:  '16px',
+      height: '16px'
     };
     const selectedStyle = {
-      border: '2px solid #000'
+      border: '2px solid #000',
+      width:  '16px',
+      height: '16px'
     };
 
     const buttons = this.props.colorMap.map((color, idx) => {
       const selectStyle = this.props.currentColor == idx ? selectedStyle : normalStyle;
-      const style = { backgroundColor: color, selectStyle };
+      const style = Object.assign({ backgroundColor: color}, selectStyle);
       return (
         <button style={style} onClick={() => this.props.onChangeColor(idx)} />
       )

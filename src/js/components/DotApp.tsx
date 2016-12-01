@@ -31,7 +31,7 @@ export class DotApp extends React.Component<Props, {}> {
   }
 
   changeColor(toId: number) {
-    console.log(toId);
+    this.props.actions.changeColor(toId);
   }
 
   render() {
