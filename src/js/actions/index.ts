@@ -1,6 +1,6 @@
 import { touchCanvas } from "./canvas"
 import { changeTool } from "./tool"
-import { changeColor } from "./color"
+import { changeColor, changeColorMap } from "./color"
 
 class DispatchActions {
   private dispatch: (action: any) => any;
@@ -19,6 +19,10 @@ class DispatchActions {
 
   public changeColor(colorID: number) {
     this.dispatch(changeColor(colorID))
+  }
+
+  public changeColorMap(colorID: number, newColor: string) {
+    this.dispatch(changeColorMap(colorID, newColor))
   }
 }
 

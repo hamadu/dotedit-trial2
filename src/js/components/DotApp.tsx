@@ -20,6 +20,7 @@ export class DotApp extends React.Component<Props, {}> {
     this.touchCanvas = this.touchCanvas.bind(this);
     this.changeTool = this.changeTool.bind(this);
     this.changeColor = this.changeColor.bind(this);
+    this.changeColorMap = this.changeColorMap.bind(this);
   }
 
   touchCanvas(y: number, x: number, mode: string) {
@@ -34,6 +35,10 @@ export class DotApp extends React.Component<Props, {}> {
     this.props.actions.changeColor(toId);
   }
 
+  changeColorMap(id: number, newColor: string) {
+    this.props.actions.changeColorMap(id, newColor);
+  }
+
   render() {
     const height = this.props.canvas.dots.length * 16;
     const width = this.props.canvas.dots[0].length * 16;
@@ -45,7 +50,9 @@ export class DotApp extends React.Component<Props, {}> {
         <div>
           <ColorPalette currentColor={this.props.color.selectedColor}
                         colorMap={this.props.color.colorMap}
-                        onChangeColor={this.changeColor} />
+                        onChangeColor={this.changeColor}
+                        onChangeColorMap={this.changeColorMap}
+                        />
         </div>
 
         <div>
