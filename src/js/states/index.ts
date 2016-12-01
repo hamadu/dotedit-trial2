@@ -48,6 +48,6 @@ export function buildInitialToolState(): ToolState {
 export function buildInitialColorState(): ColorState {
   return {
     selectedColor: 0,
-    colorMap: ['#000', '#f00', '#0f0', '#00f']
+    colorMap: ['#fff', '#f00', '#0f0', '#00f', '#ff0', '#0ff', '#f0f', '#000', '#888']
   }
 }

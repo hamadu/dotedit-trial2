@@ -9,8 +9,8 @@ class DispatchActions {
     this.dispatch = dispatch;
   }
 
-  public touchCanvas(y: number, x: number, mode: string) {
-    this.dispatch(touchCanvas(mode, y, x));
+  public touchCanvas(y: number, x: number, mode: string, color: number) {
+    this.dispatch(touchCanvas(mode, y, x, color));
   }
 
   public changeTool(toolID: number) {

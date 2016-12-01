@@ -5,6 +5,6 @@ export interface CanvasAction {
   color: number;
 }
 
-export function touchCanvas(mode: string, y: number, x: number) {
-  return { type: mode, y: y, x: x, color: 1 };
+export function touchCanvas(mode: string, y: number, x: number, color: number) {
+  return { type: mode, y, x, color };
 }

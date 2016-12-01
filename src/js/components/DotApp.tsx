@@ -24,7 +24,7 @@ export class DotApp extends React.Component<Props, {}> {
   }
 
   touchCanvas(y: number, x: number, mode: string) {
-    this.props.actions.touchCanvas(y, x, mode);
+    this.props.actions.touchCanvas(y, x, mode, this.props.color.selectedColor);
   }
 
   changeTool(toId: number) {
@@ -60,12 +60,12 @@ export class DotApp extends React.Component<Props, {}> {
         </div>
 
         <div style={{ opacity: 0.5 }}>
-          <DotCanvas dots={this.props.canvas.previewDots} />
+          <DotCanvas dots={this.props.canvas.previewDots} colorMap={this.props.color.colorMap} />
         </div>
 
         <div style={{ position: 'relative' }}>
           <div style={{ position: 'absolute', top: 0, left: 0  }}>
-            <DotCanvas dots={this.props.canvas.dots} />
+            <DotCanvas dots={this.props.canvas.dots} colorMap={this.props.color.colorMap} />
           </div>
           <div style={{
             position: 'absolute',
